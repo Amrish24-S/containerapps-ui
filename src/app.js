@@ -9,8 +9,10 @@ var indexRouter = require("./routes/index");
 var app = express();
 
 let appInsights = require("applicationinsights");
-appInsights.setup("")
+appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = "ui";
+appInsights.setup("InstrumentationKey=15bf10dc-4d16-4cd6-85ac-7de4018b0a78;IngestionEndpoint=https://canadacentral-1.in.applicationinsights.azure.com/;LiveEndpoint=https://canadacentral.livediagnostics.monitor.azure.com/;ApplicationId=a4d0504e-849f-42c2-af20-0d1f1fbcbad6")
     .setAutoDependencyCorrelation(true)
+    .enableWebInstrumentation(true)
     .setAutoCollectRequests(true)
     .setAutoCollectPerformance(true, true)
     .setAutoCollectExceptions(true)

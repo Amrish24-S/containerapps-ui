@@ -9,7 +9,7 @@ var indexRouter = require("./routes/index");
 var app = express();
 
 let appInsights = require("applicationinsights");
-appInsights.setup("InstrumentationKey=a7d99d67-c271-4a9f-8e3d-5bc33cbf3c1a;IngestionEndpoint=https://canadacentral-1.in.applicationinsights.azure.com/;LiveEndpoint=https://canadacentral.livediagnostics.monitor.azure.com/;ApplicationId=5521f9d8-9f21-4659-8e43-f8b7dc0d1091")
+appInsights.setup("")
     .setAutoDependencyCorrelation(true)
     .setAutoCollectRequests(true)
     .setAutoCollectPerformance(true, true)
@@ -18,6 +18,7 @@ appInsights.setup("InstrumentationKey=a7d99d67-c271-4a9f-8e3d-5bc33cbf3c1a;Inges
     .setAutoCollectConsole(true)
     .setUseDiskRetryCaching(true)
     .setSendLiveMetrics(true)
+    .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
     .start();
 
 app.set("env", process.env.NODE_ENV);

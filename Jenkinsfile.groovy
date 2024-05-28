@@ -21,6 +21,12 @@ pipeline {
                 cleanWs()
             }
         }
+	stage("CLONE GIT") {
+            steps { 
+                    // Let's clone the source
+                    git branch: 'main', url: 'https://github.com/Amrish24-S/containerapps-ui.git'
+            }
+        }
         stage('IMAGE BUILD'){
             steps {
                 script{

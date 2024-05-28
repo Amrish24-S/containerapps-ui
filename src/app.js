@@ -8,22 +8,6 @@ var indexRouter = require("./routes/index");
 
 var app = express();
 
-const { NodeTracerProvider } = require('@opentelemetry/node');
-const { AzureMonitorTraceExporter } = require('@azure/monitor-opentelemetry-exporter');
-const { SimpleSpanProcessor } = require('@opentelemetry/tracing');
-
-// Initialize the OpenTelemetry tracer provider
-const tracerProvider = new NodeTracerProvider();
-
-// Configure the Azure Monitor exporter (replace with your connection string)
-const exporter = new AzureMonitorTraceExporter({
-  connectionString: "YOUR_CONNECTION_STRING_HERE",
-});
-
-// Add the exporter to the tracer provider
-tracerProvider.addSpanProcessor(new SimpleSpanProcessor(exporter));
-tracerProvider.register();
-
 app.set("env", process.env.NODE_ENV);
 
 // view engine setup

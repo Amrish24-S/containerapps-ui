@@ -24,7 +24,7 @@ pipeline {
         stage('IMAGE BUILD'){
             steps {
                 script{
-                    dockerImage = docker.build registry + ":$BUILD_ID"
+                    dockerImage = docker.build("${img_name_tags}", "-f src/Dockerfile src")
                 }
             }
         }
